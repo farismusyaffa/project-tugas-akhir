@@ -286,20 +286,20 @@
         <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
     @endif
   </div>
+
   <div class="border-bottom">
     <h3 class="text-center mt-3">5. Peta Model Bisnis Platform</h3>
     @if($countInteraksi > 0)
-      <div class="row text-center"> 
-          <div class="card mt-4 mb-4">
-            <div class="card-header">
-              <p>Gambar Peta Model Bisnis Platform {{ $platform->nama }}</p>
-            </div>
+      <div class="mx-auto"> 
+          <div class="card mt-4 mb-4 text-center">
             <div class="card-body">
+              <canvas id="canvas">
+              </canvas>
             </div>
           </div>
       </div>
-      @else
-        <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
+    @else
+      <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
     @endif
   </div>
   
@@ -350,5 +350,199 @@
 </div>
 </div>
 </main>
+<script>
+  var canvas = document.getElementById('canvas');
+  canvas.height = 800;
+  canvas.width = 1000;
+  function draw() {
+    if (canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+      var ro =  0.785;
+      
+      ctx.translate(canvas.width/2, canvas.height/2);
+      ctx.save();
+      var circle = new Path2D();
+      circle.arc(0, 0, 50, 0, 2 * Math.PI);
+      ctx.stroke(circle);
 
+      ctx.font = '14px serif';
+      ctx.fillText({!! json_encode($platform -> nama) !!}, -25, 0);
+      ctx.restore();
+      
+      var sin = Math.sin(Math.PI / 4);
+      var cos = Math.cos(Math.PI / 4);
+
+      const tipepelanggans = {!! json_encode($tipepelanggan) !!};
+      const idpelanggans = {!! json_encode($idpelanggan) !!};
+
+      const idtujuans = {!! json_encode($idtujuan) !!};
+      const valuetoPels = {!! json_encode($valuetoPel) !!};
+      const monetertoPels = {!! json_encode($monetertoPel) !!};
+
+      const idasals = {!! json_encode($idasal) !!};
+      const valuetoPls = {!! json_encode($valuetoPl) !!};
+      const monetertoPls = {!! json_encode($monetertoPl) !!};
+
+      const asalpelanggans = {!! json_encode($asalpelanggan) !!};
+      const tujuanpelanggans = {!! json_encode($tujuanpelanggan) !!};
+      const values = {!! json_encode($value) !!};
+      const moneters = {!! json_encode($moneter) !!};
+
+      const spikepelanggans = {!! json_encode($spikepelanggan) !!};
+      const spikes = {!! json_encode($spike) !!};
+
+      for (var i = 0; i < tipepelanggans.length; i++) {
+       
+        ctx.lineWidth = 1;
+        ctx.moveTo(70, -5);
+        ctx.lineTo(280 , -5);
+        ctx.stroke();
+        ctx.moveTo(70, 5);
+        ctx.lineTo(280 , 5);
+        ctx.stroke();
+        ctx.font = '12px serif';
+        ctx.fillText(tipepelanggans[i], 315, -5);
+        ctx.font = '10px serif';
+        ctx.fillText('untuk Platform', 190, 20);
+        ctx.fillText('untuk Pelanggan', 190, -15);
+
+        for (var j=0; j < idtujuans.length; j++){
+          if (idtujuans[j] === idpelanggans[i]) {
+            if(monetertoPels[j] === 'Iya'){
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPels[j] + ' (Rp)', 190, -25);
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
+                  }
+                  else{
+                    ctx.strokeRect(290, -30, 100, 60);
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+              }
+            }
+            else{
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPels[j], 190, -25);
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
+                  }
+                  else{
+                    ctx.strokeRect(290, -30, 100, 60);
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+              }
+            }
+            j = idtujuans.length;
+          }
+        }
+
+        for (var k=0; k < idasals.length; k++){
+          if (idasals[k] === idpelanggans[i]) {
+            if(monetertoPls[k] === 'Iya'){
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPls[k] + ' (Rp)', 190, 30);
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                  }
+                  else{
+                    ctx.strokeRect(290, -30, 100, 60);
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m], 80, -25);
+                  }
+                  m = asalpelanggans.length;
+                }
+              }
+            }
+            else{
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPls[k], 190, 30);
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                  }
+                  else{
+                    ctx.strokeRect(290, -30, 100, 60);
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m], 80, -25);
+                  }
+                  m = asalpelanggans.length;
+                }
+              }
+            }
+            k = idasals.length;
+          }
+        }
+
+        for (var n=0; n < spikepelanggans.length; n++){
+          if (spikepelanggans[n] === tipepelanggans[i] ){
+            ctx.font = '12px serif';
+            ctx.fillText('(' + spikes[n] + ' spike)', 315, 5);
+            n = spikepelanggans.length;
+          }
+        }
+        ctx.transform(cos, sin, -sin, cos, 0, 0);
+      } 
+    }
+  }
+  draw();
+</script>
 @endsection

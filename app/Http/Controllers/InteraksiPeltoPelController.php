@@ -99,9 +99,23 @@ class InteraksiPeltoPelController extends Controller
      * @param  \App\Models\InteraksiPeltoPel  $interaksiPeltoPel
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInteraksiPeltoPelRequest $request, InteraksiPeltoPel $interaksiPeltoPel)
+    public function update(UpdateInteraksiPeltoPelRequest $request, InteraksiPeltoPel $interaksiPeltoPel, $id)
     {
-        //
+        $this->validate($request,[
+            'platform_id'=>'required',
+            'asal'=>'required',
+            'tujuan'=>'required',
+            'nilai'=>'required|max:255',
+            'moneter'=>'required'
+        ]);
+        $interaksiPeltoPel = InteraksiPeltoPel::find($id);
+        $interaksiPeltoPel->platform_id = $request->platform_id;
+        $interaksiPeltoPel->asal = $request->asal;
+        $interaksiPeltoPel->tujuan = $request->tujuan;
+        $interaksiPeltoPel->nilai = $request->nilai;
+        $interaksiPeltoPel->moneter = $request->moneter;
+        $interaksiPeltoPel->save();
+        return back()->with('success','Data Interaksi Pelanggan ke Pelanggan berhasil diupdate!');
     }
 
     /**

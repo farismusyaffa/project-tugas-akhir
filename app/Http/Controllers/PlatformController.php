@@ -79,10 +79,45 @@ class PlatformController extends Controller
         $countPelanggan = $pelanggan->count();
         $countInteraksi = $interaksiPeltoPel->count();
         $tipepelanggan = [];
+        $idpelanggan = [];
+        $idtujuan = [];
+        $valuetoPel = [];
+        $monetertoPel =[];
+        $idasal = [];
+        $valuetoPl = [];
+        $monetertoPl = [];
+        $asalpelanggan = [];
+        $value = [];
+        $moneter = [];
+        $tujuanpelanggan = [];
+        $spikepelanggan = [];
+        $spike = [];
         foreach ($pelanggan as $p) {
             $tipepelanggan[] = $p -> nama;
+            $idpelanggan[] = $p -> id;
         }
+        foreach ($interaksiPltoPel as $iPl) {
+           $idtujuan[] = $iPl -> pelanggan_id;
+           $valuetoPel [] = $iPl -> nilai;
+           $monetertoPel [] = $iPl -> moneter;
+        }
+        foreach ($interaksiPeltoPl as $iPel) {
+            $idasal[] = $iPel -> pelanggan_id;
+            $valuetoPl [] = $iPel -> nilai;
+            $monetertoPl [] = $iPel -> moneter;
+         }
+         foreach ($interaksiPeltoPel as $iPelPel) {
+            $asalpelanggan[] = $iPelPel -> asal;
+            $tujuanpelanggan[] = $iPelPel -> tujuan;
+            $value [] = $iPelPel -> nilai;
+            $moneter [] = $iPelPel -> moneter;
+         }
+         foreach ($interaksiDiterima as $iD){
+            $spikepelanggan [] = $iD -> tujuan;
+            $spike[] = $iD -> jumlah;
+         }
         
+        // dd($moneter);
         return view('klien.strategiklien',[
            'title'=>'Startegi Platform',
            'platform'=> $platform,
@@ -96,7 +131,20 @@ class PlatformController extends Controller
            'komentar'=>$komentar,
            'countPelanggan'=>$countPelanggan,
            'countInteraksi'=>$countInteraksi,
-           'tipepelanggan'=>$tipepelanggan
+           'tipepelanggan'=>$tipepelanggan,
+           'idpelanggan'=>$idpelanggan,
+           'idtujuan'=>$idtujuan,
+           'idasal'=>$idasal,
+           'asalpelanggan'=>$asalpelanggan,
+           'tujuanpelanggan'=>$tujuanpelanggan,
+           'valuetoPel'=>$valuetoPel,
+           'monetertoPel'=>$monetertoPel,
+           'valuetoPl'=>$valuetoPl,
+           'monetertoPl'=>$monetertoPl,
+           'value'=>$value,
+           'moneter'=>$moneter,
+           'spikepelanggan'=>$spikepelanggan,
+           'spike'=>$spike
         ]);
     }
 
@@ -119,6 +167,46 @@ class PlatformController extends Controller
         $komentar = Komentar::where('platform_id',$id)->orderBy('updated_at','DESC')->get();
         $countPelanggan = $pelanggan->count();
         $countInteraksi = $interaksiPeltoPel->count();
+        $tipepelanggan = [];
+        $idpelanggan = [];
+        $idtujuan = [];
+        $valuetoPel = [];
+        $monetertoPel =[];
+        $idasal = [];
+        $valuetoPl = [];
+        $monetertoPl = [];
+        $asalpelanggan = [];
+        $value = [];
+        $moneter = [];
+        $tujuanpelanggan = [];
+        $spikepelanggan = [];
+        $spike = [];
+        foreach ($pelanggan as $p) {
+            $tipepelanggan[] = $p -> nama;
+            $idpelanggan[] = $p -> id;
+        }
+        foreach ($interaksiPltoPel as $iPl) {
+           $idtujuan[] = $iPl -> pelanggan_id;
+           $valuetoPel [] = $iPl -> nilai;
+           $monetertoPel [] = $iPl -> moneter;
+        }
+        foreach ($interaksiPeltoPl as $iPel) {
+            $idasal[] = $iPel -> pelanggan_id;
+            $valuetoPl [] = $iPel -> nilai;
+            $monetertoPl [] = $iPel -> moneter;
+         }
+         foreach ($interaksiPeltoPel as $iPelPel) {
+            $asalpelanggan[] = $iPelPel -> asal;
+            $tujuanpelanggan[] = $iPelPel -> tujuan;
+            $value [] = $iPelPel -> nilai;
+            $moneter [] = $iPelPel -> moneter;
+         }
+         foreach ($interaksiDiterima as $iD){
+            $spikepelanggan [] = $iD -> tujuan;
+            $spike[] = $iD -> jumlah;
+         }
+        
+        // dd($spike);
         return view('fasilitator.strategifasilitator',[
            'title'=>'Startegi Platform',
            'platform'=> $platform,
@@ -131,7 +219,21 @@ class PlatformController extends Controller
            'interaksiDiterima'=>$interaksiDiterima,
            'komentar'=>$komentar,
            'countPelanggan'=>$countPelanggan,
-           'countInteraksi'=>$countInteraksi
+           'countInteraksi'=>$countInteraksi,
+           'tipepelanggan'=>$tipepelanggan,
+           'idpelanggan'=>$idpelanggan,
+           'idtujuan'=>$idtujuan,
+           'idasal'=>$idasal,
+           'asalpelanggan'=>$asalpelanggan,
+           'tujuanpelanggan'=>$tujuanpelanggan,
+           'valuetoPel'=>$valuetoPel,
+           'monetertoPel'=>$monetertoPel,
+           'valuetoPl'=>$valuetoPl,
+           'monetertoPl'=>$monetertoPl,
+           'value'=>$value,
+           'moneter'=>$moneter,
+           'spikepelanggan'=>$spikepelanggan,
+           'spike'=>$spike
         ]);
     }
 

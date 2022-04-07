@@ -81,9 +81,13 @@
                 </form>
             </div>
             <p class="card-header text-center">Fasilitator : {{ $platform->fasilitator->name }} </p>
+            <div class="card-body">
+
+            </div>
       </div>
     </div>
   </div>
+
   <div class="border-bottom">
     <h3 class="text-center mt-3">2. Pelanggan</h3>
     <div class="mx-auto"> 
@@ -207,6 +211,7 @@
       </div>
     </div>
   </div>
+
   <div class="border-bottom">
     <h3 class="text-center mt-3">3. Interaksi</h3>
     @if($countPelanggan > 0)
@@ -590,29 +595,30 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                <form action="/editinteraksiPeltoPel/{{ $platform->nama }}" method="post" class="row g-3">
+                                <form action="/editinteraksiPeltoPel/{{ $i->id }}" method="post" class="row g-3">
+                                  @method('put')
                                   @csrf
                                   <div class="mb-3 col-md-6">
-                                    <label for="tujuan" class="col-form-label">Asal</label>
+                                    <label for="asal" class="col-form-label">Asal</label>
                                     <select class="form-select" name="asal" id="asal">
+                                      <option value="{{ $i->asal }}" selected>{{ $i->asal }}</option>
                                       @foreach ($pelanggan as $p)
-                                        <option value="{{ $i->asal }}" selected>{{ $i->asal }}</option>
                                         <option value="{{ $p->nama }}">{{ $p->nama }}</option>
                                       @endforeach
                                     </select>
                                   </div>
                                   <div class="mb-3 col-md-6">
-                                    <label for="asal" class="col-form-label">Tujuan</label>
+                                    <label for="tujuan" class="col-form-label">Tujuan</label>
                                     <select class="form-select" name="tujuan" id="tujuan">
+                                      <option value="{{ $i->tujuan }}" selected>{{ $i->tujuan }}</option>
                                       @foreach ($pelanggan as $p)
-                                        <option value="{{ $i->tujuan }}" selected>{{ $i->tujuan }}</option>
                                         <option value="{{ $p->nama }}">{{ $p->nama }}</option>
                                       @endforeach
                                     </select>
                                   </div>
                                   <div class="mb-3 col-md-6">
                                     <label for="nilai" class="col-form-label">Value</label>
-                                    <input class="form-control" name="nilai" id="nilai" required>
+                                    <input class="form-control" name="nilai" id="nilai"  value="{{ $i->nilai }}" required>
                                     @error('nilai')
                                     <div class="invalid-feedback">
                                       {{ $message }}
@@ -654,6 +660,7 @@
         <h5 class="text-center mt-4">Pelanggan Belum Diidentikasi</h5>
       @endif
   </div>
+
   <div class="border-bottom">
     <h3 class="text-center mt-3">4.Spike dan Linchpin</h3>
     @if($countInteraksi > 0)
@@ -743,13 +750,13 @@
                   @php
                       $n = 0;
                   @endphp
-                  @foreach ($interaksiDiberikan as $iD)
+                  @foreach ($interaksiDiterima as $iD)
                     @php
                       $n++;
                     @endphp
                   <tr>
                     <th scope="row">{{ $n }}</th>
-                    <td>{{ $iD->asal }}</td>
+                    <td>{{ $iD->tujuan }}</td>
                     <td>{{ $iD->jumlah }}</td>
                     @if($n == 1)
                       <td><button class="btn btn-primary btn-sm">Linchpin</button></td>
@@ -791,58 +798,22 @@
         <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
     @endif
   </div>
+
   <div class="border-bottom">
     <h3 class="text-center mt-3">5. Peta Model Bisnis Platform</h3>
     @if($countInteraksi > 0)
       <div class="mx-auto"> 
           <div class="card mt-4 mb-4 text-center">
-            <div class="card-header">
-              <button type="button" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#tambahGambar" data-bs-whatever="Tambah Gambar Baru"><i class="bi bi-pencil"></i> Unggah / Ubah Peta Model Bisnis Platform</button>
-              {{-- Unggah Gambar --}}
-              <div class="modal fade text-start" id="tambahGambar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Unggah / Ubah Peta Model Bisnis Platform</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="/unggahgambar/{{ $platform->id}}" method="put" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                          <label for="formFile" class="form-label">Maksimal 2 MB</label>
-                          <input class="form-control @error('gambar') is-invalid @enderror" type="file" name="gambar" id="gambar" value="">
-                          @error('gambar')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                          @enderror
-                        </div>
-                        <input type="hidden" name="platform_id" id="platform_id" value="{{ $platform->id }}">
-                        <input type="hidden" name="platform_id" id="platform_id" value="{{ $platform->id }}">
-                        <input type="hidden" class="form-control" id="nama" name="nama" value="{{ $platform->nama }}">
-                        <input type="hidden" class="form-control" id="deskripsi" name="deskripsi" value="{{ $platform->deskripsi }}" >
-                        <input type="hidden" class="form-control" id="fasilitator_id" name="fasilitator_id" value="{{ $platform->fasilitator_id }}">
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
-                          <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="card-body">
               <canvas id="canvas">
               </canvas>
             </div>
           </div>
-        </div>
-        @else
-        <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
-        @endif
       </div>
+    @else
+      <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
+    @endif
+  </div>
   
   <div class="post-a-comment-area mt-3">
     <h5>Berikan Komentar</h5>
@@ -888,13 +859,12 @@
                 @endif
             </div>
     @endforeach
-</div>
+  </div>
 </div>
 </main>
 
 <script>
   var canvas = document.getElementById('canvas');
-  // var draw = canvas.getContext('2d');
   canvas.height = 800;
   canvas.width = 1000;
   function draw() {
@@ -907,22 +877,7 @@
       var circle = new Path2D();
       circle.arc(0, 0, 50, 0, 2 * Math.PI);
       ctx.stroke(circle);
-      
-      // var rectangle = new Path2D();
-      // rectangle.rect(300, -40, 80, 80);
-      // var rectangle1 = new Path2D();
-      // rectangle1.rect(-400, -30, 100, 60);
-      // var rectangle2 = new Path2D();
-      // rectangle2.rect(-40, 200, 80, 80);
-      // var rectangle3 = new Path2D();
-      // rectangle3.rect(-40, -300, 80, 80);
-      // var rectangle4 = new Path2D();
-      // rectangle4.rect(-45, -305, 90, 90);
-      // ctx.stroke(rectangle);
-      // ctx.stroke(rectangle1);
-      // ctx.stroke(rectangle2);
-      // ctx.stroke(rectangle3);
-      // ctx.stroke(rectangle4);
+
       ctx.font = '14px serif';
       ctx.fillText({!! json_encode($platform -> nama) !!}, -25, 0);
       ctx.restore();
@@ -930,12 +885,27 @@
       var sin = Math.sin(Math.PI / 4);
       var cos = Math.cos(Math.PI / 4);
 
-      // ctx.translate(300, 40); 
       const tipepelanggans = {!! json_encode($tipepelanggan) !!};
+      const idpelanggans = {!! json_encode($idpelanggan) !!};
 
-      // console.log(tipepelanggans);
+      const idtujuans = {!! json_encode($idtujuan) !!};
+      const valuetoPels = {!! json_encode($valuetoPel) !!};
+      const monetertoPels = {!! json_encode($monetertoPel) !!};
+
+      const idasals = {!! json_encode($idasal) !!};
+      const valuetoPls = {!! json_encode($valuetoPl) !!};
+      const monetertoPls = {!! json_encode($monetertoPl) !!};
+
+      const asalpelanggans = {!! json_encode($asalpelanggan) !!};
+      const tujuanpelanggans = {!! json_encode($tujuanpelanggan) !!};
+      const values = {!! json_encode($value) !!};
+      const moneters = {!! json_encode($moneter) !!};
+
+      const spikepelanggans = {!! json_encode($spikepelanggan) !!};
+      const spikes = {!! json_encode($spike) !!};
+
       for (var i = 0; i < tipepelanggans.length; i++) {
-        ctx.strokeRect(290, -30, 100, 60);
+       
         ctx.lineWidth = 1;
         ctx.moveTo(70, -5);
         ctx.lineTo(280 , -5);
@@ -944,84 +914,147 @@
         ctx.lineTo(280 , 5);
         ctx.stroke();
         ctx.font = '12px serif';
-        ctx.fillText(tipepelanggans[i], 300, 0);
+        ctx.fillText(tipepelanggans[i], 315, -5);
         ctx.font = '10px serif';
-        ctx.fillText('Ke Platform', 140, 20);
-        ctx.fillText('Ke Pelanggan', 140, -15);
+        ctx.fillText('untuk Platform', 190, 20);
+        ctx.fillText('untuk Pelanggan', 190, -15);
+
+        for (var j=0; j < idtujuans.length; j++){
+          if (idtujuans[j] === idpelanggans[i]) {
+            if(monetertoPels[j] === 'Iya'){
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPels[j] + ' (Rp)', 190, -25);
+            }
+            else{
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPels[j], 190, -25);
+            }
+            j = idtujuans.length;
+          }
+        }
+
+        for (var k=0; k < idasals.length; k++){
+          if (idasals[k] === idpelanggans[i]) {
+            if(monetertoPls[k] === 'Iya'){
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPls[k] + ' (Rp)', 190, 30);
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
+                  }
+                  else{
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+                else{
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    // l = asalpelanggans.length;
+                }
+              }
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                  }
+                  else{
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m], 80, -25);
+                  }
+                  m = tujuanpelanggans.length;
+                }
+              }
+            }
+            else if (monetertoPls[k] === 'Tidak'){
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
+                  }
+                  else{
+                    ctx.strokeRect(290, -30, 100, 60);
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+                // else if(l <= asalpelanggan.length){
+                //   ctx.strokeRect(290, -30, 100, 60);
+                //   // l = asalpelanggans.length;
+                // }
+              }
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                  }
+                  else{
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
+                  }
+                  m = asalpelanggans.length;
+                }
+              }
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPls[k], 190, 30);
+            }
+            k = idasals.length;
+          }
+        }
+
+        for (var n=0; n < spikepelanggans.length; n++){
+          if (spikepelanggans[n] === tipepelanggans[i] ){
+            ctx.font = '12px serif';
+            ctx.fillText('(' + spikes[n] + ' spike)', 315, 5);
+            n = spikepelanggans.length;
+          }
+        }
         ctx.transform(cos, sin, -sin, cos, 0, 0);
-        // c++;
       } 
-
-      // ctx.setTransform(-1, 0, 0, 1, 100, 100);
-      // var x = 50;
-      // var y = 200;
-      // for (var i = 0; i <= 4; i++) {
-      //   ctx.translate(0 + x , 0 + y);
-      //   ctx.strokeRect(0, 0, 100, 60);
-        // ctx.lineWidth = 1;
-        // ctx.moveTo(-5, 70);
-        // ctx.lineTo(-5, 280);
-        // ctx.stroke();
-        // ctx.moveTo(5, 70);
-        // ctx.lineTo(5 , 280);
-        // ctx.stroke();
-        // ctx.font = '10px serif';
-        // ctx.fillText('Ke Platform', 140, 15);
-        // ctx.fillText('Ke Pelanggan', 140, -15);
-        // ctx.transform(cos, sin, -sin, cos, 0, 0);
-      //   x = x + 
-      // } 
-      // var k = 0;
-      // var l = 0;
-      // for (var i = 0; i < 3; i++) {
-      //   // k++;
-      //   for (var j = 0; j < 3; j++) {
-      //     ctx.save();
-          // ctx.fillStyle = 'rgb(' + (51 * i) + ', ' + (255 - 51 * i) + ', 255)';
-          // ctx.translate(-400 + j * 350, -280 + i * 250);
-          // ctx.moveTo(- 330 + j * 350, -5);
-          // if(k = 0 && l = 1 ){
-          //   ctx.stroke();
-          //   ctx.strokeRect(0, 0, 100, 60);
-          //   ctx.restore();
-          // }
-          // if(i != 1 & j != 1 ){
-          //   ctx.strokeRect(0, 0, 100, 60);
-          //   ctx.lineWidth = 1;
-            // ctx.restore();
-          // }
-          // ctx.moveTo(-400 + j * 350, -260 + i * 230);
-          // ctx.lineTo(-330 + j * 280, 280 - i * 250);
-          // ctx.stroke();
-          // ctx.restore();
-          // if(k = 1 && l = 0 ){
-          //   ctx.stroke();
-          //   ctx.strokeRect(0, 0, 100, 60);
-          // }
-          // l++;
-        // }
-      // }
-      // ctx.fillStyle = 'rgba(255, 128, 255, 0.5)';
-      // ctx.fillRect(0, 50, 100, 100);
-
-      // ctx.moveTo(50, 50);
-      // ctx.lineTo(100, 50);
-      // ctx.lineTo(50, 100);
-      // ctx.closePath();
-      // ctx.stroke();
-      // ctx.fillStyle = '#0095DD';
-      // ctx.fillRect(0, 0, 100, 100);
-      // ctx.rotate((Math.PI / 180) * 45); // rotate
-      // ctx.translate(-300 , -40 );
-      
-      // ctx.strokeRect(0, 0, 80, 80);
-      // ctx.strokeRect(300, -30, 100, 60);
-      // ctx.strokeRect(-50, 200, 100, 60);
-      // ctx.strokeRect(-50, -300, 100, 60);
-      // ctx.strokeRect(-45, -305, 90, 90);
-      // ctx.strokeRect(-400, -30, 100, 60);
-      
-     
     }
   }
   draw();
