@@ -28,7 +28,7 @@
                 <h5>Berdasar Bulan</h5>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -77,7 +77,7 @@
                 <h5>Berdasar Tahun</h5>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
                     <th scope="col">No</th>

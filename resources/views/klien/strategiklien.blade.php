@@ -13,9 +13,9 @@
         </div>
         @endif
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
-          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Strategi</a>
-          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a>
-          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Dashboard</a>
+          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
         </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
             <h5 class="card-header text-center">{{ $platform->nama }}</h5>
             <div class="card-body">
                 <p class="card-text">{{ $platform->deskripsi }}</p>
-                <button class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#editPlatform{{ $platform->id }}" data-bs-whatever="Edit Data Platform"><i class="bi bi-pencil-square"></i> Edit</button>
+                <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editPlatform{{ $platform->id }}" data-bs-whatever="Edit Data Platform"><i class="bi bi-pencil-square"></i> Edit</button>
                 <div class="modal fade text-start" id="editPlatform{{ $platform->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -77,7 +77,7 @@
                 <form action="/hapusplatform/{{ $platform->id }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
-                  <button class="btn btn-outline-primary" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
+                  <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
                 </form>
             </div>
             <p class="card-header text-center">Fasilitator : {{ $platform->fasilitator->name }} </p>
@@ -135,7 +135,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -157,7 +157,7 @@
                     <td>{{ $p->nama }}</td>
                     <td>{{ $p->deskripsi }}</td>
                     <td>
-                      <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editPelanggan{{ $p->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i></button>
+                      <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editPelanggan{{ $p->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i></button>
                       <div class="modal fade text-start" id="editPelanggan{{ $p->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -200,7 +200,7 @@
                       <form action="/hapuspelanggan/{{ $p->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
                       </form>
                     </td>
                   </tr>
@@ -271,7 +271,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -297,7 +297,7 @@
                       <td>{{ $i->nilai }}</td>
                       <td>{{ $i->moneter }}</td>
                       <td>
-                        <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPltoPel{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i> Edit</button>
+                        <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPltoPel{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i></button>
                         <div class="modal fade text-start" id="editinteraksiPltoPel{{ $i->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -352,7 +352,7 @@
                         <form action="/hapusinteraksiPltoPel/{{ $i->id }}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
-                          <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
+                          <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
                         </form>
                       </td>
                     </tr>
@@ -414,7 +414,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -440,7 +440,7 @@
                       <td>{{ $i->nilai }}</td>
                       <td>{{ $i->moneter }}</td>
                       <td>
-                        <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPeltoPl{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i> Edit</button>
+                        <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPeltoPl{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i></button>
                         <div class="modal fade text-start" id="editinteraksiPeltoPl{{ $i->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -495,7 +495,7 @@
                         <form action="/hapusinteraksiPeltoPl/{{ $i->id }}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
-                          <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
+                          <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
                         </form>
                       </td>
                     </tr>
@@ -560,7 +560,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -586,7 +586,7 @@
                       <td>{{ $i->nilai }}</td>
                       <td>{{ $i->moneter }}</td>
                       <td>
-                        <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPeltoPel{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i> Edit</button>
+                        <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editinteraksiPeltoPel{{ $i->id }}" data-bs-whatever="Edit Data Pelanggan"><i class="bi bi-pencil-square"></i></button>
                         <div class="modal fade text-start" id="editinteraksiPeltoPel{{ $i->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -646,7 +646,7 @@
                         <form action="/hapusinteraksiPeltoPel/{{ $i->id }}" method="post" class="d-inline">
                           @method('delete')
                           @csrf
-                          <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
+                          <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
                         </form>
                       </td>
                     </tr>
@@ -671,7 +671,7 @@
               <h5>Jumlah Interaksi Diberikan</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -704,7 +704,7 @@
               <h5>Jumlah Interaksi Diterima</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -737,7 +737,7 @@
               <h5>Spike dan Linchpin</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -865,11 +865,11 @@
 
 <script>
   var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
   canvas.height = 800;
   canvas.width = 1000;
   function draw() {
     if (canvas.getContext) {
-      var ctx = canvas.getContext('2d');
       var ro =  0.785;
       
       ctx.translate(canvas.width/2, canvas.height/2);
@@ -880,11 +880,10 @@
 
       ctx.font = '14px serif';
       ctx.fillText({!! json_encode($platform -> nama) !!}, -25, 0);
+      ctx.font = '11px serif';
+      ctx.fillText('(Platform)', -25, 10);
       ctx.restore();
       
-      var sin = Math.sin(Math.PI / 4);
-      var cos = Math.cos(Math.PI / 4);
-
       const tipepelanggans = {!! json_encode($tipepelanggan) !!};
       const idpelanggans = {!! json_encode($idpelanggan) !!};
 
@@ -903,6 +902,15 @@
 
       const spikepelanggans = {!! json_encode($spikepelanggan) !!};
       const spikes = {!! json_encode($spike) !!};
+
+      if (tipepelanggans.length <= 4){
+        var sin = Math.sin(Math.PI / 2);
+        var cos = Math.cos(Math.PI / 2);
+      }
+      if (tipepelanggans.length > 4){
+        var sin = Math.sin(Math.PI / 4);
+        var cos = Math.cos(Math.PI / 4);
+      }
 
       for (var i = 0; i < tipepelanggans.length; i++) {
        
@@ -996,7 +1004,7 @@
                 }
               }
             }
-            else if (monetertoPls[k] === 'Tidak'){
+            if (monetertoPls[k] === 'Tidak'){
               for (var l=0; l < asalpelanggans.length; l++){
                 if (asalpelanggans[l] === tipepelanggans[i]) {
                   if(moneters[l] === 'Iya'){
@@ -1020,7 +1028,7 @@
                   }
                   l = asalpelanggans.length;
                 }
-                // else if(l <= asalpelanggan.length){
+                // else{
                 //   ctx.strokeRect(290, -30, 100, 60);
                 //   // l = asalpelanggans.length;
                 // }

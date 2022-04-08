@@ -11,9 +11,9 @@
             <h5 class="card-header text-center">{{ $platform->nama }}</h5>
             <div class="card-body">
                 <p class="card-text">{{ $platform->deskripsi }}</p>
-                <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Strategi</a>
-                <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Indikator</a>
-                <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Dashboard</a>
+                <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+                <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-gear"></i> Indikator</a>
+                <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-bar-chart"></i> Dashboard</a>
                 <p></p>
                 <p>Dibuat : {{ $platform->created_at }} | Diupdate : {{ $platform->updated_at }}</p>
             </div>

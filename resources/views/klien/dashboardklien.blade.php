@@ -13,17 +13,17 @@
           {{ session('success') }}
         </div>
         @endif
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4">
-          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Strategi</a>
-          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a>
-          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Dashboard</a>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
         </div>
     </div>
   </div>
 
   <div>
     <div class="mx-auto"> 
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover table-sm">
         <thead>
           <tr>
             <th scope="col">No</th>

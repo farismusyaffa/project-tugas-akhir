@@ -7,11 +7,11 @@
   <div class="text-center">
     <h1 class="display-5 fw-bold">Strategi Platform {{ $platform->nama }}!</h1>
     <div class="col-lg-6 mx-auto">
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
-          <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Strategi</a>
-          <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a>
-          <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Dashboard</a>
-        </div>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+        <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+        <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+        <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
+      </div>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
             <div class="card-header text-center">
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -71,7 +71,7 @@
                 <h5>Platform ke Pelanggan</h5>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -104,7 +104,7 @@
                 <h5>Pelanggan ke Platform</h5>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -137,7 +137,7 @@
                 <h5>Pelanggan ke Pelanggan</h5>
               </div>
               <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-sm">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -182,7 +182,7 @@
               <h5>Jumlah Interaksi Diberikan</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -215,7 +215,7 @@
               <h5>Jumlah Interaksi Diterima</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -248,7 +248,7 @@
               <h5>Spike dan Linchpin</h5>
             </div>
             <div class="card-body">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-hover table-sm">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
@@ -352,11 +352,11 @@
 </main>
 <script>
   var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
   canvas.height = 800;
   canvas.width = 1000;
   function draw() {
     if (canvas.getContext) {
-      var ctx = canvas.getContext('2d');
       var ro =  0.785;
       
       ctx.translate(canvas.width/2, canvas.height/2);
@@ -367,11 +367,10 @@
 
       ctx.font = '14px serif';
       ctx.fillText({!! json_encode($platform -> nama) !!}, -25, 0);
+      ctx.font = '11px serif';
+      ctx.fillText('(Platform)', -25, 10);
       ctx.restore();
       
-      var sin = Math.sin(Math.PI / 4);
-      var cos = Math.cos(Math.PI / 4);
-
       const tipepelanggans = {!! json_encode($tipepelanggan) !!};
       const idpelanggans = {!! json_encode($idpelanggan) !!};
 
@@ -390,6 +389,15 @@
 
       const spikepelanggans = {!! json_encode($spikepelanggan) !!};
       const spikes = {!! json_encode($spike) !!};
+
+      if (tipepelanggans.length <= 4){
+        var sin = Math.sin(Math.PI / 2);
+        var cos = Math.cos(Math.PI / 2);
+      }
+      if (tipepelanggans.length > 4){
+        var sin = Math.sin(Math.PI / 4);
+        var cos = Math.cos(Math.PI / 4);
+      }
 
       for (var i = 0; i < tipepelanggans.length; i++) {
        
@@ -411,60 +419,10 @@
             if(monetertoPels[j] === 'Iya'){
               ctx.font = '11px serif';
               ctx.fillText('nilai: ' + valuetoPels[j] + ' (Rp)', 190, -25);
-              for (var l=0; l < asalpelanggans.length; l++){
-                if (asalpelanggans[l] === tipepelanggans[i]) {
-                  if(moneters[l] === 'Iya'){
-                    ctx.beginPath();
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(290, 0);
-                    ctx.lineTo(340, -50);
-                    ctx.lineTo(390, 0);
-                    ctx.lineTo(340, 50);
-                    ctx.closePath();
-                    ctx.stroke()
-                    ctx.font = '11px serif';
-                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
-                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
-                  }
-                  else{
-                    ctx.strokeRect(290, -30, 100, 60);
-                    ctx.font = '11px serif';
-                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
-                    ctx.fillText('nilai: ' + values[l], 80, 30);
-                  }
-                  l = asalpelanggans.length;
-                }
-              }
             }
             else{
               ctx.font = '11px serif';
               ctx.fillText('nilai: ' + valuetoPels[j], 190, -25);
-              for (var l=0; l < asalpelanggans.length; l++){
-                if (asalpelanggans[l] === tipepelanggans[i]) {
-                  if(moneters[l] === 'Iya'){
-                    ctx.beginPath();
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(290, 0);
-                    ctx.lineTo(340, -50);
-                    ctx.lineTo(390, 0);
-                    ctx.lineTo(340, 50);
-                    ctx.closePath();
-                    ctx.stroke()
-                    ctx.font = '11px serif';
-                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
-                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
-                  }
-                  else{
-                    ctx.strokeRect(290, -30, 100, 60);
-                    ctx.font = '11px serif';
-                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
-                    ctx.fillText('nilai: ' + values[l], 80, 30);
-                  }
-                  l = asalpelanggans.length;
-                }
-              }
             }
             j = idtujuans.length;
           }
@@ -475,9 +433,9 @@
             if(monetertoPls[k] === 'Iya'){
               ctx.font = '11px serif';
               ctx.fillText('nilai: ' + valuetoPls[k] + ' (Rp)', 190, 30);
-              for (var m=0; m < tujuanpelanggans.length; m++){
-                if (tujuanpelanggans[m] === tipepelanggans[i]) {
-                  if(moneters[m] === 'Iya'){
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
                     ctx.beginPath();
                     ctx.lineWidth = 1;
                     ctx.moveTo(290, 0);
@@ -487,25 +445,56 @@
                     ctx.closePath();
                     ctx.stroke()
                     ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
+                  }
+                  else{
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+                else{
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(290, 0);
+                    ctx.lineTo(340, -50);
+                    ctx.lineTo(390, 0);
+                    ctx.lineTo(340, 50);
+                    ctx.closePath();
+                    ctx.stroke()
+                    // l = asalpelanggans.length;
+                }
+              }
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.font = '11px serif';
                     ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
                     ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
                   }
                   else{
-                    ctx.strokeRect(290, -30, 100, 60);
                     ctx.font = '11px serif';
                     ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
                     ctx.fillText('nilai: ' + values[m], 80, -25);
                   }
-                  m = asalpelanggans.length;
+                  m = tujuanpelanggans.length;
                 }
               }
             }
-            else{
-              ctx.font = '11px serif';
-              ctx.fillText('nilai: ' + valuetoPls[k], 190, 30);
-              for (var m=0; m < tujuanpelanggans.length; m++){
-                if (tujuanpelanggans[m] === tipepelanggans[i]) {
-                  if(moneters[m] === 'Iya'){
+            if (monetertoPls[k] === 'Tidak'){
+              for (var l=0; l < asalpelanggans.length; l++){
+                if (asalpelanggans[l] === tipepelanggans[i]) {
+                  if(moneters[l] === 'Iya'){
                     ctx.beginPath();
                     ctx.lineWidth = 1;
                     ctx.moveTo(290, 0);
@@ -515,18 +504,38 @@
                     ctx.closePath();
                     ctx.stroke()
                     ctx.font = '11px serif';
-                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
-                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l] + ' (Rp)', 80, 30);
                   }
                   else{
                     ctx.strokeRect(290, -30, 100, 60);
                     ctx.font = '11px serif';
+                    ctx.fillText('untuk ' + tujuanpelanggans[l], 80, 20);
+                    ctx.fillText('nilai: ' + values[l], 80, 30);
+                  }
+                  l = asalpelanggans.length;
+                }
+                // else{
+                //   ctx.strokeRect(290, -30, 100, 60);
+                //   // l = asalpelanggans.length;
+                // }
+              }
+              for (var m=0; m < tujuanpelanggans.length; m++){
+                if (tujuanpelanggans[m] === tipepelanggans[i]) {
+                  if(moneters[m] === 'Iya'){
+                    ctx.font = '11px serif';
                     ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
-                    ctx.fillText('nilai: ' + values[m], 80, -25);
+                    ctx.fillText('nilai: ' + values[m] + ' (Rp)', 80, -25);
+                  }
+                  else{
+                    ctx.font = '11px serif';
+                    ctx.fillText('dari ' + asalpelanggans[m], 80, -15);
                   }
                   m = asalpelanggans.length;
                 }
               }
+              ctx.font = '11px serif';
+              ctx.fillText('nilai: ' + valuetoPls[k], 190, 30);
             }
             k = idasals.length;
           }

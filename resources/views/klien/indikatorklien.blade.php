@@ -13,10 +13,10 @@
           {{ session('success') }}
         </div>
         @endif
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4">
-          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Strategi</a>
-          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a>
-          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Dashboard</a>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+          <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+          <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+          <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
         </div>
         <button type="button" class="btn btn-primary px-4 gap-3 mb-3"  data-bs-toggle="modal" data-bs-target="#tambahIndikator" data-bs-whatever="Tambah Indikator Baru"><i class="bi bi-plus-square"></i> Buat Indikator</button>
         {{-- Tambah Indikator --}}
@@ -63,7 +63,7 @@
 
   <div>
     <div class="mx-auto"> 
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover table-sm">
         <thead>
           <tr>
             <th scope="col">No</th>
@@ -86,7 +86,7 @@
             <td>{{ $i->deskripsi }}</td>
             <td>
               <a href="/dataindikatorklien/{{ $i->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i></a>
-              <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editIndikator{{ $i->id }}" data-bs-whatever="Edit Data Indikator"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editIndikator{{ $i->id }}" data-bs-whatever="Edit Data Indikator"><i class="bi bi-pencil-square"></i></button>
               <div class="modal fade text-start" id="editIndikator{{ $i->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -129,7 +129,7 @@
               <form action="/hapusindikator/{{ $i->id }}" method="post" class="d-inline">
                 @method('delete')
                 @csrf
-                <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
+                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
               </form>
             </td>
           </tr>

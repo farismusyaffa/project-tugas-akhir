@@ -7,7 +7,7 @@
   <div class="text-center">
     <h1 class="display-5 fw-bold">Bangun Platform Anda!</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, dolore tempore. Maxime a alias at laudantium perferendis enim! Nemo, delectus.</p>
+        <p class="lead mb-4">Platform merupakan model bisnis yang mengidentifikasi penciptaan nilai, pengambilan nilai, dan transfer nilai. Peta model bisnis platform merupakan alat yang digunakan model bisnis platform sebagai alat yang mengidentifikasi semua pihak penting dalam platform serta penciptaan nilai dan pertukaran nilai. </p>
         @if(session()->has('success'))
         <div class="alert alert-success" role="alert">
           {{ session('success') }}
@@ -73,11 +73,11 @@
             <h5 class="card-header text-center">{{ $platform->nama }}</h5>
             <div class="card-body">
                 <p class="card-text">{{ $platform->deskripsi }}</p>
-                <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Strategi</a>
-                <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Indikator</a>
-                <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-info-square"></i> Dashboard</a>
+                <a href="/strategiklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+                <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-gear"></i> Indikator</a>
+                <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary btn-sm"><i class="bi bi-bar-chart"></i> Dashboard</a>
                 <p></p>
-                <button class="btn btn-outline-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editPlatform{{ $platform->id }}" data-bs-whatever="Edit Data Platform"><i class="bi bi-pencil-square"></i> Edit</button>
+                <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editPlatform{{ $platform->id }}" data-bs-whatever="Edit Data Platform"><i class="bi bi-pencil-square"></i> Edit</button>
                 {{-- Edit Data Platform --}}
                 <div class="modal fade text-start" id="editPlatform{{ $platform->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -129,7 +129,7 @@
                 <form action="/hapusplatform/{{ $platform->id }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
-                  <button class="btn btn-outline-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
+                  <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i> Hapus</button>
                 </form>
                 <p>Dibuat : {{ $platform->created_at }} | Diupdate : {{ $platform->updated_at }}</p>
             </div>

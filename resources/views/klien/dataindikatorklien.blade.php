@@ -12,6 +12,11 @@
           {{ session('success') }}
         </div>
         @endif
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+          <a href="/strategiklien/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+          <a href="/indikatorklien/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+          <a href="/dashboardklien/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
+        </div>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4">
           {{-- <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a> --}}
           <button type="button" class="btn btn-primary px-4 gap-3 mb-3"  data-bs-toggle="modal" data-bs-target="#tambahDataIndikator" data-bs-whatever="Tambah Data Indikator Baru"><i class="bi bi-plus-square"></i> Tambah Data Indikator</button>
@@ -73,7 +78,7 @@
             <h5>Data Indikator</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -95,7 +100,7 @@
                   <td>{{ $d->data }}</td>
                   <td>{{ $d->date }}</td>
                   <td>
-                    <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editdataindikator{{ $d->id }}" data-bs-whatever="Edit Data Indikator"><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#editdataindikator{{ $d->id }}" data-bs-whatever="Edit Data Indikator"><i class="bi bi-pencil-square"></i></button>
                     <div class="modal fade text-start" id="editdataindikator{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -145,7 +150,7 @@
                     <form action="/hapusdataindikator/{{ $d->id }}" method="post" class="d-inline">
                       @method('delete')
                       @csrf
-                      <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
+                      <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
                     </form>
                   </td>
                 </tr>
@@ -161,7 +166,7 @@
             <h5>Berdasar Bulan</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -194,7 +199,7 @@
             <h5>Berdasar Tahun</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>

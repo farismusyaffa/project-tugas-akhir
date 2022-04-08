@@ -5,7 +5,13 @@
   {{-- <h1 class="visually-hidden">Heroes examples</h1> --}}
   {{-- @foreach($platform as $p) --}}
   <div class="text-center">
-    <h1 class="display-5 fw-bold">Data Indikator {{ $indikator->nama }}</h1>>    
+    <h1 class="display-5 fw-bold">Data Indikator {{ $indikator->nama }}</h1> 
+    <div class="col-lg-6 mx-auto border-bottom">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+        <a href="/strategifasilitator/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+        <a href="/indikatorfasilitator/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+        <a href="/dashboardfasilitator/{{ $indikator->platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
+      </div>   
     </div>
   </div>
 
@@ -17,13 +23,12 @@
             <h5>Data Indikator</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>
                   <th scope="col">Data</th>
                   <th scope="col">Tanggal</th>
-                  <th scope="col">Opsi</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,60 +43,6 @@
                   <th scope="row">{{ $n }}</th>
                   <td>{{ $d->data }}</td>
                   <td>{{ $d->date }}</td>
-                  <td>
-                    <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#editdataindikator{{ $d->id }}" data-bs-whatever="Edit Data Indikator"><i class="bi bi-pencil-square"></i></button>
-                    <div class="modal fade text-start" id="editdataindikator{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Indikator</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form action="/editdataindikator/{{ $d->id }}" method="post" class="row g-3">
-                              @method('put')
-                              @csrf
-                              <div class="mb-3">
-                                <label for="data" class="col-form-label">Data Indikator</label>
-                                <input type="number" class="form-control @error('data') is-invalid @enderror" id="data" name="data" value="{{ $d->data }}" autofocus required>
-                                @error('data')
-                                    <div class="invalid-feedback">
-                                      {{ $message }}
-                                    </div>
-                                @enderror
-                              </div>
-                              <div class="mb-3">
-                                <label for="date" class="col-form-label">Tanggal</label>
-                                <div class="input-group date" id="datepicker1">
-                                  <input type="text" class="form-control" @error('date') is-invalid @enderror" id="date" name="date" value="{{ $d->date }}" required >
-                                  <span class="input-group-append">
-                                      <span class="input-group-text bg-white">
-                                          <i class="fa fa-calendar"></i>
-                                      </span>
-                                  </span>
-                                </div>
-                                @error('date')
-                                <div class="invalid-feedback">
-                                  {{ $message }}
-                                </div>
-                                @enderror
-                              </div>
-                              <input type="hidden" name="indikator_id" id="indikator_id" value="{{ $indikator->id }}">
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <form action="/hapusdataindikator/{{ $d->id }}" method="post" class="d-inline">
-                      @method('delete')
-                      @csrf
-                      <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="bi bi-trash"></i></button>
-                    </form>
-                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -105,7 +56,7 @@
             <h5>Berdasar Bulan</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>
@@ -138,7 +89,7 @@
             <h5>Berdasar Tahun</h5>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
               <thead>
                 <tr>
                   <th scope="col">No</th>

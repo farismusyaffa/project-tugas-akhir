@@ -8,22 +8,23 @@
     <h1 class="display-5 fw-bold">Indikator Platform {{ $platform->nama }}</h1>
     <p>Klien : {{ $platform->user->name }}</p>
     <div class="col-lg-6 mx-auto border-bottom"">
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4">
-          <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Strategi</a>
-          <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Indikator</a>
-          <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-info-square"></i> Dashboard</a>
-        </div> 
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-3 pt-3 pb-4 border-bottom">
+        <a href="/strategifasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-arrow-left-right"></i> Strategi</a>
+        <a href="/indikatorfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
+        <a href="/dashboardfasilitator/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
+      </div>
     </div>
   </div>
 
   <div>
     <div class="mx-auto"> 
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover table-sm">
         <thead>
           <tr>
             <th scope="col">No</th>
             <th scope="col">Indikator</th>
             <th scope="col">Deskripsi</th>
+            <th scope="col">Opsi</th>
           </tr>
         </thead>
         <tbody>

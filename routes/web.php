@@ -94,7 +94,7 @@ Route::group(['middleware'=>'auth:fasilitator'], function(){
     Route::get('/berandafasilitator', [PlatformController::class, 'indexFasilitator']);
     Route::get('/strategifasilitator/{id}',[PlatformController::class,'showFasilitator']);
     Route::get('/indikatorfasilitator/{id}',[IndikatorController::class,'showFasilitator']);
-    Route::get('/dataindikatorfasilitator/{id}',[DataIndikatorController::class,'showFasiltator']);
+    Route::get('/dataindikatorfasilitator/{id}',[DataIndikatorController::class,'showFasilitator']);
     Route::get('/dashboardfasilitator/{id}',[IndikatorController::class,'showIndikatorFasilitator']);
     Route::get('/dashboarddataindikatorfasilitator/{id}',[DataIndikatorController::class,'showDashboardFasilitator']);
 

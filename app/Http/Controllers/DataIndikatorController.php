@@ -61,7 +61,6 @@ class DataIndikatorController extends Controller
     {
         
         $indikator = Indikator::find($id);
-        // $platform = Platform::where('id',$indikator->platform_id)->get();
         $dataIndikator = DataIndikator::where('indikator_id',$id)->get();
         $sumDataBulan = DB::table('data_indikators')
         ->select([
@@ -77,7 +76,6 @@ class DataIndikatorController extends Controller
         return view('klien.dataindikatorklien',[
             'title'=>'Data Indikator',
             'indikator' =>$indikator,
-            // 'platform'=> $platform,
             'dataIndikator'=>$dataIndikator,
             'sumDataBulan'=>$sumDataBulan,
             'sumDataTahun'=>$sumDataTahun
@@ -88,7 +86,6 @@ class DataIndikatorController extends Controller
     {
         
         $indikator = Indikator::find($id);
-        // $platform = Platform::where('id',$indikator->platform_id)->get();
         $dataIndikator = DataIndikator::where('indikator_id',$id)->get();
         $sumDataBulan = DB::table('data_indikators')
         ->select([
@@ -104,7 +101,6 @@ class DataIndikatorController extends Controller
         return view('fasilitator.dataindikatorfasilitator',[
             'title'=>'Data Indikator',
             'indikator' =>$indikator,
-            // 'platform'=> $platform,
             'dataIndikator'=>$dataIndikator,
             'sumDataBulan'=>$sumDataBulan,
             'sumDataTahun'=>$sumDataTahun
