@@ -7,7 +7,8 @@
   <div class="text-center">
     <h1 class="display-5 fw-bold">Bangun Platform Anda!</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Platform merupakan model bisnis yang mengidentifikasi penciptaan nilai, pengambilan nilai, dan transfer nilai. Peta model bisnis platform merupakan alat yang digunakan model bisnis platform sebagai alat yang mengidentifikasi semua pihak penting dalam platform serta penciptaan nilai dan pertukaran nilai. </p>
+        <p class="lead">Platform adalah bisnis yang menciptakan nilai dengan memfasilitasi interaksi langsung antara dua atau lebih jenis pelanggan yang berbeda.</p>
+        <p class="lead">Peta model bisnis platform merupakan alat yang digunakan model bisnis platform sebagai alat yang mengidentifikasi semua pihak penting dalam platform serta penciptaan nilai dan pertukaran nilai (Rogers, 2016).</p>
         @if(session()->has('success'))
         <div class="alert alert-success" role="alert">
           {{ session('success') }}

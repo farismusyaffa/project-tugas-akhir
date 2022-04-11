@@ -29,8 +29,8 @@
     
     <title>Platform | {{ $title }}</title>
   </head>
-  <body>
-    <div class="container mt-4" >
+  <body class="bg-light">
+    <div class="container" >
       @yield('container')
     </div>
 
