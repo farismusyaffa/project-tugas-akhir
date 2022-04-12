@@ -134,7 +134,7 @@
           </div>
 
             <input type="hidden" name="level" id="level" required value="klien">
-            <input type="hidden" name="status" id="status" required value="Menunggu">
+            <input type="hidden" name="status" id="status" required value="Aktif">
 
             <div class="col-12">
               <label for="alamat" class="form-label">Alamat<span class="text-muted"> (Opsional)</span></label>
