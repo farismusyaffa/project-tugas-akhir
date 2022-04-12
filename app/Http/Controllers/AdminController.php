@@ -19,17 +19,31 @@ class AdminController extends Controller
     public function index()
     {
         $klien = User::all();
+        $countKlien = $klien->count();
         $klienMenunggu = User::where('status','like',"%Menunggu%")->get();
+        $countklienMenunggu = $klienMenunggu->count();
         $klienAktif = User::where('status','like',"%Aktif%")->get();
+        $countklienAktif = $klienAktif->count();
         $fasilitator = Fasilitator::all();
+        $countFasi = $fasilitator->count();
         $fasilitatorMenunggu = Fasilitator::where('status','like',"%Menunggu%")->get();
         $fasilitatorAktif = Fasilitator::where('status','like',"%Aktif%")->get();
+        $countFasiMenunggu = $fasilitatorMenunggu->count();
+        $countFasiAktif = $fasilitatorAktif->count();
         $platform = Platform::all();
-        $countFasi = $fasilitator->count();
-        $countKlien = $klien->count();
-        // dd($klienMenunggu);
+        $countPlatform = $platform->count();
+        $totalpengguna = $countKlien + $countFasi;
+        // dd($totalpengguna);
         return view('admin.dashboard',[
-            'title'=>'Dashboard'
+            'title'=>'Dashboard',
+            'countKlien'=>$countKlien,
+            'countklienMenunggu'=>$countklienMenunggu,
+            'countklienAktif'=>$countklienAktif,
+            'countFasi'=>$countFasi,
+            'countFasiMenunggu'=>$countFasiMenunggu,
+            'countFasiAktif'=>$countFasiAktif,
+            'countPlatform'=>$countPlatform,
+            'totalpengguna'=>$totalpengguna
         ]);
     }
 
