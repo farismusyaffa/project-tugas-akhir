@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     
     
-    <title>Platform | {{ $title }}</title>
+    <title>PEMB-P | {{ $title }}</title>
   </head>
   <body>
     @include('partials.navbar2');

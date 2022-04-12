@@ -28,8 +28,9 @@ class MasukController extends Controller
             return redirect()->intended('/berandaklien');
         }elseif (Auth::guard('fasilitator')->attempt(['email'=>$request->email, 'password'=>$request->password])){
             return redirect()->intended('/berandafasilitator');
+        }elseif (Auth::guard('admin')->attempt(['email'=>$request->email, 'password'=>$request->password])){
+            return redirect()->intended('/dashboard');
         }
-
         return back()->with('GagalMasuk', 'Gagal Masuk!');
     }
 
@@ -89,6 +90,9 @@ class MasukController extends Controller
             return redirect('/');
         }elseif(Auth::guard('fasilitator')->check()){
             Auth::guard('fasilitator')->logout();
+            return redirect('/');
+        }elseif(Auth::guard('admin')->check()){
+            Auth::guard('admin')->logout();
             return redirect('/');
         }
     }

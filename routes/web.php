@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\DaftarController;
-use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\IndikatorController;
@@ -103,3 +103,9 @@ Route::group(['middleware'=>'auth:fasilitator'], function(){
     Route::delete('/hapuskomentar/{id}/fasilitator',[KomentarController::class,'destroyFasilitator']);
 });
 //Admin
+Route::group(['middleware'=>'auth:admin'], function(){
+    Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::get('/klien', [AdminController::class, 'showKlien']);
+    Route::get('/fasilitator', [AdminController::class, 'showFasilitator']);
+
+});

@@ -117,42 +117,30 @@
               </div>
 
               <div class="col-6">
-                <label for="tempatlahir" class="form-label">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempatlahir" required value="{{ old('tempatlahir') }}">
-                <div class="invalid-feedback">
-                  Tempat lahir wajib diisi.
-                </div>
+                <label for="tempatlahir" class="form-label">Tempat Lahir<span class="text-muted"> (Opsional)</span></label>
+                <input type="text" class="form-control" id="tempatlahir" value="{{ old('tempatlahir') }}">
               </div>
 
               <div class="col-6">
-                <label for="tempatlahir" class="form-label">Tanggal Lahir</label>
+                <label for="tempatlahir" class="form-label">Tanggal Lahir<span class="text-muted"> (Opsional)</span></label>
                 <div class="input-group date" id="datepicker">
-                  <input type="text" class="form-control"id="tanggallahir" name="tanggallahir" required >
+                  <input type="text" class="form-control"id="tanggallahir" name="tanggallahir">
                   <span class="input-group-append">
                       <span class="input-group-text bg-white">
                           <i class="fa fa-calendar"></i>
                       </span>
                   </span>
                 </div>
-                <div class="invalid-feedback">
-                  Tanggal lahir wajib diisi.
-                </div>
               </div>
 
               <div class="col-sm-6">
-                <label for="pekerjaan" class="form-label">Pekerjan</label>
-                <input type="text" class="form-control" id="pekerjaan" required value="{{ old('pekerjaan') }}">
-                <div class="invalid-feedback">
-                  Pekerjaan wajib diisi.
-                </div>
+                <label for="pekerjaan" class="form-label">Pekerjan<span class="text-muted"> (Opsional)</span></label>
+                <input type="text" class="form-control" id="pekerjaan" value="{{ old('pekerjaan') }}">
               </div>
 
                <div class="col-sm-6">
-                <label for="institusi" class="form-label">Institusi</label>
-                <input type="text" class="form-control" id="institusi" required value="{{ old('institusi') }}">
-                <div class="invalid-feedback">
-                  Institusi wajib diisi.
-                </div>
+                <label for="institusi" class="form-label">Institusi<span class="text-muted"> (Opsional)</span></label>
+                <input type="text" class="form-control" id="institusi" value="{{ old('institusi') }}">
               </div>
   
               <input type="hidden" name="level" id="level" required value="klien">
@@ -161,9 +149,6 @@
               <div class="col-12">
                 <label for="alamat" class="form-label">Alamat<span class="text-muted"> (Opsional)</span></label>
                 <textarea type="text" class="form-control" id="alamat"></textarea>
-                <div class="invalid-feedback">
-                  Alamat wajib diisi.
-                </div>
               </div>
               <hr class="my-3">
               <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Daftar</button>

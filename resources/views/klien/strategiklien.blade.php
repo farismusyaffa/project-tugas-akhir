@@ -81,8 +81,46 @@
                 </form>
             </div>
             <p class="card-header text-center">Fasilitator : {{ $platform->fasilitator->name }} </p>
-            <div class="card-body">
-
+            <div class="card-body text-left row">
+              <table class="table table-borderless table-sm col-6">
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td>{{ $platform->fasilitator->email }}</td>
+                </tr>
+                <tr>
+                  <td>No. Tepl/HP</td>
+                  <td>:</td>
+                  <td>01391093119</td>
+                </tr>
+                <tr>
+                  <td>Jenis Kelamin</td>
+                  <td>:</td>
+                  <td>Laki-Laki</td>
+                </tr>
+                <tr>
+                  <td>Tempat dan Tanggal Lahir</td>
+                  <td>:</td>
+                  <td>Tempat,01391</td>
+                </tr>
+              </table>
+              <table class="table table-borderless table-sm col-6">
+                <tr>
+                  <td>Pekerjaan</td>
+                  <td>:</td>
+                  <td>Mahaswsiswa</td>
+                </tr>
+                <tr>
+                  <td>Intitusi</td>
+                  <td>:</td>
+                  <td>Universitas Islam Indonesia</td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td>:</td>
+                  <td>Wisma Adisty</td>
+                </tr>
+              </table>
             </div>
       </div>
     </div>
@@ -335,9 +373,8 @@
                                   <div class="mb-3 col-md-6">
                                     <label for="moneter" class="col-form-label">Moneter?</label>
                                     <select class="form-select" name="moneter" id="moneter">
-                                      <option selected value="{{ $i->moneter }}">{{ $i->moneter }}</option>
-                                      <option value="Tidak">Tidak</option>
-                                      <option value="Iya">Iya</option>
+                                      <option value="Tidak" @if($i->moneter === "Tidak") selected @endif>Tidak</option>
+                                      <option value="Iya"  @if($i->moneter === "Iya") selected @endif>Iya</option>
                                     </select>
                                   </div>
                                   <div class="modal-footer">
@@ -478,9 +515,8 @@
                                   <div class="mb-3 col-md-6">
                                     <label for="moneter" class="col-form-label">Moneter?</label>
                                     <select class="form-select" name="moneter" id="moneter">
-                                      <option selected value="{{ $i->moneter }}">{{ $i->moneter }}</option>
-                                      <option value="Tidak">Tidak</option>
-                                      <option value="Iya">Iya</option>
+                                      <option value="Tidak" @if($i->moneter === "Tidak") selected @endif>Tidak</option>
+                                      <option value="Iya"  @if($i->moneter === "Iya") selected @endif>Iya</option>
                                     </select>
                                   </div>
                                   <div class="modal-footer">
@@ -601,18 +637,18 @@
                                   <div class="mb-3 col-md-6">
                                     <label for="asal" class="col-form-label">Asal</label>
                                     <select class="form-select" name="asal" id="asal">
-                                      <option value="{{ $i->asal }}" selected>{{ $i->asal }}</option>
+                                      {{-- <option value="{{ $i->asal }}" selected>{{ $i->asal }}</option> --}}
                                       @foreach ($pelanggan as $p)
-                                        <option value="{{ $p->nama }}">{{ $p->nama }}</option>
+                                      <option value="{{ $p->nama }}" @if($i->asal === $p->nama) selected @endif>{{ $p->nama }}</option>
                                       @endforeach
                                     </select>
                                   </div>
                                   <div class="mb-3 col-md-6">
                                     <label for="tujuan" class="col-form-label">Tujuan</label>
                                     <select class="form-select" name="tujuan" id="tujuan">
-                                      <option value="{{ $i->tujuan }}" selected>{{ $i->tujuan }}</option>
+                                      {{-- <option value="{{ $i->tujuan }}" selected>{{ $i->tujuan }}</option> --}}
                                       @foreach ($pelanggan as $p)
-                                        <option value="{{ $p->nama }}">{{ $p->nama }}</option>
+                                        <option value="{{ $p->nama }}" @if($i->tujuan === $p->nama) selected @endif>{{ $p->nama }}</option>
                                       @endforeach
                                     </select>
                                   </div>
@@ -628,9 +664,8 @@
                                   <div class="mb-3 col-md-6">
                                     <label for="moneter" class="col-form-label">Moneter?</label>
                                     <select class="form-select" name="moneter" id="moneter">
-                                      <option selected value="{{ $i->moneter }}">{{ $i->moneter }}</option>
-                                      <option value="Tidak">Tidak</option>
-                                      <option value="Iya">Iya</option>
+                                      <option value="Tidak" @if($i->moneter === "Tidak") selected @endif>Tidak</option>
+                                      <option value="Iya"  @if($i->moneter === "Iya") selected @endif>Iya</option>
                                     </select>
                                   </div>
                                     <input type="hidden" name="platform_id" id="platform_id" value="{{ $platform->id }}">
@@ -1008,7 +1043,11 @@
               for (var l=0; l < asalpelanggans.length; l++){
                 if (asalpelanggans[l] === tipepelanggans[i]) {
                   if(moneters[l] === 'Iya'){
+                    ctx.strokeStyle = '#FFF';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(290, -30, 100, 60);
                     ctx.beginPath();
+                    ctx.strokeStyle = '#000';
                     ctx.lineWidth = 1;
                     ctx.moveTo(290, 0);
                     ctx.lineTo(340, -50);
@@ -1028,10 +1067,11 @@
                   }
                   l = asalpelanggans.length;
                 }
-                // else{
-                //   ctx.strokeRect(290, -30, 100, 60);
-                //   // l = asalpelanggans.length;
-                // }
+                else{
+                  // ctx.strokeStyle = '#FFF';
+                  ctx.strokeRect(290, -30, 100, 60);
+                  // l = asalpelanggans.length;
+                }
               }
               for (var m=0; m < tujuanpelanggans.length; m++){
                 if (tujuanpelanggans[m] === tipepelanggans[i]) {

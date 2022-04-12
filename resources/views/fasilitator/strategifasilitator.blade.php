@@ -23,7 +23,38 @@
             <div class="card-body">
                 <p class="card-text">{{ $platform->deskripsi }}</p>
             </div>
-            <p class="card-header text-center">Fasilitator : {{ $platform->fasilitator->name }} </p>
+            <p class="card-header text-center">Klien : {{ $platform->user->name }} </p>
+            <div class="card-body text-left row">
+              <table class="table table-borderless table-sm col-6">
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td>{{ $platform->user->email }}</td>
+                </tr>
+                <tr>
+                  <td>No. Tepl/HP</td>
+                  <td>:</td>
+                  <td>01391093119</td>
+                </tr>
+                <tr>
+                  <td>Jenis Kelamin</td>
+                  <td>:</td>
+                  <td>Laki-Laki</td>
+                </tr>
+              </table>
+              <table class="table table-borderless table-sm col-6">
+                <tr>
+                  <td>Tempat dan Tanggal Lahir</td>
+                  <td>:</td>
+                  <td>Tempat,01391</td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td>:</td>
+                  <td>Wisma Adisty</td>
+                </tr>
+              </table>
+            </div>
       </div>
     </div>
   </div>
@@ -261,13 +292,13 @@
                   @php
                       $n = 0;
                   @endphp
-                  @foreach ($interaksiDiberikan as $iD)
+                  @foreach ($interaksiDiterima as $iD)
                     @php
                       $n++;
                     @endphp
                   <tr>
                     <th scope="row">{{ $n }}</th>
-                    <td>{{ $iD->asal }}</td>
+                    <td>{{ $iD->tujuan }}</td>
                     <td>{{ $iD->jumlah }}</td>
                     @if($n == 1)
                       <td><button class="btn btn-primary btn-sm">Linchpin</button></td>
