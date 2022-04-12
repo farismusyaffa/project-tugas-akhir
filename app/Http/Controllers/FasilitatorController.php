@@ -9,9 +9,18 @@ class FasilitatorController extends Controller
 {
     public function index()
     {
-        return view('klien.berandaklien',[
-            'title' => 'Beranda',
-            'fasilitator' => Fasilitator::all()
+        $fasilitator = Fasilitator::all();
+        return view('fasilitator.profilfasilitator',[
+            'title'=>'Profil',
+            'fasilitator'=>$fasilitator
         ]);
+    }
+
+    
+    public function destroy(Fasilitator $fasilitator, $id)
+    {
+        $fasilitator = Fasilitator::find($id);
+        $fasilitator->delete();
+        return back()->with('success','Fasilitator Berhasil Dihapus!');
     }
 }

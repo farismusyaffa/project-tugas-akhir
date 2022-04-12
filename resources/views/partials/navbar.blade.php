@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/berandaklien">Platform</a>
+      <a class="navbar-brand" href="/berandaklien">PEMB-P</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,12 +17,12 @@
               {{ auth()->user()->name }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Profil</a></li>
-              <li><hr class="dropdown-divider"></li>
+              {{-- <li><a class="dropdown-item" href="/profil/klien">Profil</a></li>
+              <li><hr class="dropdown-divider"></li> --}}
               <li>
                 <form action="/keluar" method="post">
                   @csrf
-                  <button type="submit" class="dropdown-item">Keluar</button>
+                  <button type="submit" class="dropdown-item"><span data-feather="log-out"></span> Keluar</button>
                 </form>
               </li>
             </ul>

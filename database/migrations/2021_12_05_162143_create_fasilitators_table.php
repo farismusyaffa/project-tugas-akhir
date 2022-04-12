@@ -22,6 +22,13 @@ class CreateFasilitatorsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('username')->unique();
+            $table->text('alamat')->nullable();
+            $table->string('tempatlahir')->nullable();
+            $table->date('tanggallahir')->nullable();
+            $table->string('jeniskelamin');
+            $table->string('noHP');
+            $table->string('pekerjaan')->nullable();
+            $table->string('tempatpekerjaan')->nullable();
             $table->timestamps();
             $table->rememberToken();
         });

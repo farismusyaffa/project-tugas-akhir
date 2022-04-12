@@ -56,12 +56,12 @@
       </div>
       <div class="row g-5 justify-content-center">
         <div class="col-lg-8 mb-5">
-          <form action="/daftarfasilitator" method="post">
+          <form action="/daftar/fasilitator" method="post">
             @csrf
             <div class="row g-3">
               <div class="col-sm-6">
                 <label for="firstName" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="name" required value="{{ old('name') }}">
+                <input type="text" class="form-control" name="name" id="name" required value="{{ old('name') }}">
                 <div class="invalid-feedback">
                   Nama wajib diisi.
                 </div>
@@ -69,7 +69,7 @@
   
               <div class="col-sm-6">
                 <label for="lastName" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username" required value="{{ old('username') }}">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required value="{{ old('username') }}">
                 <div class="invalid-feedback">
                   Username wajib diisi.
                 </div>
@@ -79,7 +79,7 @@
                 <label for="email" class="form-label">Email</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text">@</span>
-                  <input type="email" class="form-control" id="email" placeholder="nama@contoh.com" required value="{{ old('email') }}">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="nama@contoh.com" required value="{{ old('email') }}">
                 <div class="invalid-feedback">
                     Email wajib diisi.
                   </div>
@@ -88,7 +88,7 @@
   
               <div class="col-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" name="password" id="password" required>
                 <div class="invalid-feedback">
                   Password wajib diisi.
                 </div>
@@ -98,19 +98,19 @@
                 <label for="jeniskelamin" class="form-label">Jenis Kelamin</label>
                 <div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="jeniskelamin" value="Laki - Laki">
+                    <input class="form-check-input" type="radio" name="jeniskelamin" id="jeniskelamin" value="Laki - Laki">
                     <label class="form-check-label" for="jeniskelamin">Laki - Laki</label>  
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="jeniskelamin" value="Perempuan">
+                    <input class="form-check-input" type="radio" name="jeniskelamin" id="jeniskelamin" value="Perempuan">
                     <label class="form-check-label" for="jeniskelamin">Perempuan</label>
                   </div>
                 </div>
               </div>
               
               <div class="col-6">
-                <label for="notelp" class="form-label">No. Telp/HP</label>
-                <input type="number" class="form-control" id="notelp" required value="{{ old('notelp') }}">
+                <label for="noHP" class="form-label">No. Telp/HP</label>
+                <input type="number" class="form-control" name="noHP" id="noHP" required value="{{ old('noHP') }}">
                 <div class="invalid-feedback">
                   No. Telp/HP wajib diisi.
                 </div>
@@ -118,13 +118,13 @@
 
               <div class="col-6">
                 <label for="tempatlahir" class="form-label">Tempat Lahir<span class="text-muted"> (Opsional)</span></label>
-                <input type="text" class="form-control" id="tempatlahir" value="{{ old('tempatlahir') }}">
+                <input type="text" class="form-control" name="tempatlahir" id="tempatlahir" value="{{ old('tempatlahir') }}">
               </div>
 
               <div class="col-6">
                 <label for="tempatlahir" class="form-label">Tanggal Lahir<span class="text-muted"> (Opsional)</span></label>
                 <div class="input-group date" id="datepicker">
-                  <input type="text" class="form-control"id="tanggallahir" name="tanggallahir">
+                  <input type="text" class="form-control" id="tanggallahir" name="tanggallahir" value="{{ old('tanggallahir') }}">
                   <span class="input-group-append">
                       <span class="input-group-text bg-white">
                           <i class="fa fa-calendar"></i>
@@ -135,20 +135,20 @@
 
               <div class="col-sm-6">
                 <label for="pekerjaan" class="form-label">Pekerjan<span class="text-muted"> (Opsional)</span></label>
-                <input type="text" class="form-control" id="pekerjaan" value="{{ old('pekerjaan') }}">
+                <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan') }}">
               </div>
 
                <div class="col-sm-6">
-                <label for="institusi" class="form-label">Institusi<span class="text-muted"> (Opsional)</span></label>
-                <input type="text" class="form-control" id="institusi" value="{{ old('institusi') }}">
+                <label for="tempatpekerjaan" class="form-label">Tempat Bekerja<span class="text-muted"> (Opsional)</span></label>
+                <input type="text" class="form-control" name="tempatpekerjaan" id="tempatpekerjaan" value="{{ old('tempatpekerjaan') }}">
               </div>
   
               <input type="hidden" name="level" id="level" required value="klien">
-              <input type="hidden" name="status" id="status" required value="Menunggu">
+              <input type="hidden" name="status" id="status" required value="Aktif">
 
               <div class="col-12">
                 <label for="alamat" class="form-label">Alamat<span class="text-muted"> (Opsional)</span></label>
-                <textarea type="text" class="form-control" id="alamat"></textarea>
+                <textarea type="text" class="form-control" name="alamat" id="alamat"></textarea>
               </div>
               <hr class="my-3">
               <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Daftar</button>

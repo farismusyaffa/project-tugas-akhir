@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InteraksiPltoPel;
+use App\Models\InteraksiPeltoPel;
 use App\Models\Indikator;
 use App\Http\Requests\StoreInteraksiPltoPelRequest;
 use App\Http\Requests\UpdateInteraksiPltoPelRequest;
@@ -123,6 +124,9 @@ class InteraksiPltoPelController extends Controller
     public function destroy(InteraksiPltoPel $interaksiPltoPel, $id)
     {
         $interaksiPltoPel = InteraksiPltoPel::find($id);
+        $interaksiPeltoPel = InteraksiPeltoPel::where('asal','LIKE',$interaksiPltoPel->nama,'OR','tujuan','LIKE',$interaksiPltoPel->nama);
+        // dd($interaksiPeltoPel);
+        $interaksiPeltoPel->delete();
         $interaksiPltoPel->delete();
         return back()->with('success','Interaksi berhasil dihapus!');
     }

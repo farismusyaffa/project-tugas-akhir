@@ -8,6 +8,7 @@ use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
 use App\Models\InteraksiPeltoPl;
 use App\Models\InteraksiPltoPel;
+use App\Models\InteraksiPeltoPel;
 
 class PelangganController extends Controller
 {
@@ -108,8 +109,15 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::find($id);
         $interaksiPltoPel = InteraksiPltoPel::where('pelanggan_id', $id);
         $interaksiPeltoPl = InteraksiPeltoPl::where('pelanggan_id', $id);
+        $interaksiPeltoPel1 = InteraksiPeltoPel::where('asal','LIKE',$pelanggan->nama);
+        $interaksiPeltoPel2 = InteraksiPeltoPel::where('tujuan','LIKE',$pelanggan->nama);
+        // $countPeltoPel1 = $interaksiPeltoPel1->count();
+        // $countPeltoPel2 = $interaksiPeltoPel2->count();
+        // dd($interaksiPeltoPel);
         $interaksiPeltoPl->delete();
         $interaksiPltoPel->delete();
+        $interaksiPeltoPel1->delete();
+        $interaksiPeltoPel2->delete();
         $pelanggan->delete();
         return back()->with('success','Pelanggan berhasil dihapus!');
     }

@@ -27,7 +27,12 @@ class DaftarController extends Controller
             'status' => 'required',
             'email'=>'required|email:dns|unique:users',
             'password'=>'required|min:6|max:255',
-            'username' =>'required|min:8|max:255|unique:users'
+            'username' =>'required|min:8|max:255|unique:users',
+            'noHP'=>'required|max:15',
+            'jeniskelamin'=>'required',
+            'tempatlahir'=>'max:255',
+            'tanggallahir'=>'',
+            'alamat'=>''
        ]);
        $validatedData['password'] = bcrypt($validatedData['password']);
        User::create($validatedData);
@@ -43,7 +48,14 @@ class DaftarController extends Controller
              'status' => 'required',
              'email'=>'required|email:dns|unique:fasilitators',
              'password'=>'required|min:6|max:255',
-             'username' =>'required|min:8|max:255|unique:fasilitators'
+             'username' =>'required|min:8|max:255|unique:fasilitators',
+             'noHP'=>'required|max:15',
+             'jeniskelamin'=>'required',
+             'tempatlahir'=>'max:255',
+             'tanggallahir'=>'',
+             'pekerjaan'=>'max:255',
+             'tempatpekerjaan'=>'max:255',
+             'alamat'=>''
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
         Fasilitator::create($validatedData);

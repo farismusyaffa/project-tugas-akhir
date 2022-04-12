@@ -49,16 +49,8 @@ class AdminController extends Controller
 
     public function showKlien()
     {
-        $klien = User::all();
         $klienMenunggu = User::where('status','like',"%Menunggu%")->get();
         $klienAktif = User::where('status','like',"%Aktif%")->get();
-        $fasilitator = Fasilitator::all();
-        $fasilitatorMenunggu = Fasilitator::where('status','like',"%Menunggu%")->get();
-        $fasilitatorAktif = Fasilitator::where('status','like',"%Aktif%")->get();
-        $platform = Platform::all();
-        $countFasi = $fasilitator->count();
-        $countKlien = $klien->count();
-        // dd($klienMenunggu);
         return view('admin.klien',[
             'title'=>'Klien',
             'klienMenunggu'=>$klienMenunggu,
@@ -68,18 +60,13 @@ class AdminController extends Controller
 
     public function showFasilitator()
     {
-        $klien = User::all();
-        $klienMenunggu = User::where('status','like',"%Menunggu%")->get();
-        $klienAktif = User::where('status','like',"%Aktif%")->get();
-        $fasilitator = Fasilitator::all();
         $fasilitatorMenunggu = Fasilitator::where('status','like',"%Menunggu%")->get();
         $fasilitatorAktif = Fasilitator::where('status','like',"%Aktif%")->get();
-        $platform = Platform::all();
-        $countFasi = $fasilitator->count();
-        $countKlien = $klien->count();
         // dd($klienMenunggu);
         return view('admin.fasilitator',[
-            'title'=>'Fasilitator'
+            'title'=>'Fasilitator',
+            'fasilitatorMenunggu'=>$fasilitatorMenunggu,
+            'fasilitatorAktif'=>$fasilitatorAktif
         ]);
     }
 

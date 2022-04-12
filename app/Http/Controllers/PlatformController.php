@@ -77,6 +77,8 @@ class PlatformController extends Controller
         ])->where('platform_id',$id)->groupBy('tujuan')->orderBy('jumlah','desc')->get();
         $komentar = Komentar::where('platform_id',$id)->orderBy('updated_at','DESC')->get();
         $countPelanggan = $pelanggan->count();
+        $countPltoPel = $interaksiPltoPel->count();
+        $countPeltoPl = $interaksiPeltoPl->count();
         $countInteraksi = $interaksiPeltoPel->count();
         $tipepelanggan = [];
         $idpelanggan = [];
@@ -130,6 +132,8 @@ class PlatformController extends Controller
            'interaksiDiterima'=>$interaksiDiterima,
            'komentar'=>$komentar,
            'countPelanggan'=>$countPelanggan,
+           'countPltoPel'=>$countPltoPel,
+           'countPeltoPl'=>$countPeltoPl,
            'countInteraksi'=>$countInteraksi,
            'tipepelanggan'=>$tipepelanggan,
            'idpelanggan'=>$idpelanggan,
@@ -166,7 +170,10 @@ class PlatformController extends Controller
         ])->where('platform_id',$id)->groupBy('tujuan')->orderBy('jumlah','desc')->get();
         $komentar = Komentar::where('platform_id',$id)->orderBy('updated_at','DESC')->get();
         $countPelanggan = $pelanggan->count();
+        $countPltoPel = $interaksiPltoPel->count();
+        $countPeltoPl = $interaksiPeltoPl->count();
         $countInteraksi = $interaksiPeltoPel->count();
+        // dd($countPltoPel);
         $tipepelanggan = [];
         $idpelanggan = [];
         $idtujuan = [];
@@ -219,6 +226,8 @@ class PlatformController extends Controller
            'interaksiDiterima'=>$interaksiDiterima,
            'komentar'=>$komentar,
            'countPelanggan'=>$countPelanggan,
+           'countPltoPel'=>$countPltoPel,
+           'countPeltoPl'=>$countPeltoPl,
            'countInteraksi'=>$countInteraksi,
            'tipepelanggan'=>$tipepelanggan,
            'idpelanggan'=>$idpelanggan,

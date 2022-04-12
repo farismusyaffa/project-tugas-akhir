@@ -8,6 +8,8 @@ use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\IndikatorController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FasilitatorController;
 use App\Http\Controllers\DataIndikatorController;
 use App\Http\Controllers\InteraksiPeltoPlController;
 use App\Http\Controllers\InteraksiPltoPelController;
@@ -33,11 +35,11 @@ Route::post('/masuk', [MasukController::class, 'masuk']);
 // Route::post('/masukklien', [MasukController::class, 'masukKlien']);
 Route::post('/keluar', [MasukController::class, 'keluar']);
 Route::get('/daftarklien', [DaftarController::class, 'viewDaftarKlien'])->name('login')->middleware('guest');
-Route::post('/daftarklien', [DaftarController::class, 'StoreDaftarKlien']);
+Route::post('/daftar/klien', [DaftarController::class, 'StoreDaftarKlien']);
 // Route::get('/masukfasilitator', [MasukController::class, 'viewMasukFasilitator'])->name('login')->middleware('guest');
 // Route::post('/masukfasilitator', [MasukController::class, 'masukFasilitator']);
 Route::get('/daftarfasilitator', [DaftarController::class, 'viewDaftarFasilitator'])->name('login')->middleware('guest');
-Route::post('/daftarfasilitator', [DaftarController::class, 'StoreDaftarFasilitator']);
+Route::post('/daftar/fasilitator', [DaftarController::class, 'StoreDaftarFasilitator']);
 // Route::group(['middleware'=>'auth:user,fasilitator'], function(){
 //     Route::get('/beranda', [PlatformController::class, 'index']);
 //     Route::get('/strategi/{id}',[PlatformController::class,'show']);
@@ -54,7 +56,9 @@ Route::group(['middleware'=>'auth:user'], function(){
     Route::delete('/hapusplatform/{id}',[PlatformController::class,'destroy']);
     Route::put('/editplatform/{id}',[PlatformController::class,'update']);
     Route::put('/unggahgambar/{id}',[PlatformController::class,'updateGambar']);
-
+    
+    Route::get('/profil/klien', [UserController::class, 'edit']);
+    Route::put('/edit/klien/{id}', [UserController::class, 'update']);
 
     Route::post('/tambahpelanggan/{nama}',[PelangganController::class,'store']);
     Route::delete('/hapuspelanggan/{id}',[PelangganController::class,'destroy']);
@@ -107,5 +111,10 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::get('/klien', [AdminController::class, 'showKlien']);
     Route::get('/fasilitator', [AdminController::class, 'showFasilitator']);
+
+    Route::put('/editklien/{id}', [UserController::class, 'updateStatus']);
+    Route::delete('/hapusklien/{id}',[UserController::class,'destroy']);
+    Route::delete('/hapusfasilitator/{id}',[FasilitatorController::class,'destroy']);
+
 
 });

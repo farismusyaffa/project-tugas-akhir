@@ -91,34 +91,34 @@
                 <tr>
                   <td>No. Tepl/HP</td>
                   <td>:</td>
-                  <td>01391093119</td>
+                  <td>{{ $platform->fasilitator->noHP }}</td>
                 </tr>
                 <tr>
                   <td>Jenis Kelamin</td>
                   <td>:</td>
-                  <td>Laki-Laki</td>
+                  <td>{{ $platform->fasilitator->jeniskelamin }}</td>
                 </tr>
                 <tr>
                   <td>Tempat dan Tanggal Lahir</td>
                   <td>:</td>
-                  <td>Tempat,01391</td>
+                  <td>{{ $platform->fasilitator->tempatlahir }}, {{ $platform->fasilitator->tanggallahir }}</td>
                 </tr>
               </table>
               <table class="table table-borderless table-sm col-6">
                 <tr>
                   <td>Pekerjaan</td>
                   <td>:</td>
-                  <td>Mahaswsiswa</td>
+                  <td>{{ $platform->fasilitator->pekerjaan }}</td>
                 </tr>
                 <tr>
                   <td>Intitusi</td>
                   <td>:</td>
-                  <td>Universitas Islam Indonesia</td>
+                  <td>{{ $platform->fasilitator->tempatpekerjaan }}</td>
                 </tr>
                 <tr>
                   <td>Alamat</td>
                   <td>:</td>
-                  <td>Wisma Adisty</td>
+                  <td>{{ $platform->fasilitator->alamat }}</td>
                 </tr>
               </table>
             </div>
@@ -836,7 +836,7 @@
 
   <div class="border-bottom">
     <h3 class="text-center mt-3">5. Peta Model Bisnis Platform</h3>
-    @if($countInteraksi > 0)
+    @if($countPltoPel > 0 OR $countPeltoPl > 0)
       <div class="mx-auto"> 
           <div class="card mt-4 mb-4 text-center">
             <div class="card-body">
@@ -846,7 +846,7 @@
           </div>
       </div>
     @else
-      <h5 class="text-center mt-4">Interaksi antara Pelanggan dengan Pelanggan Belum Diisi</h5>
+      <h5 class="text-center mt-4">Interaksi Belum Diisi</h5>
     @endif
   </div>
   
@@ -981,6 +981,14 @@
             if(monetertoPls[k] === 'Iya'){
               ctx.font = '11px serif';
               ctx.fillText('nilai: ' + valuetoPls[k] + ' (Rp)', 190, 30);
+              ctx.beginPath();
+              ctx.lineWidth = 1;
+              ctx.moveTo(290, 0);
+              ctx.lineTo(340, -50);
+              ctx.lineTo(390, 0);
+              ctx.lineTo(340, 50);
+              ctx.closePath();
+              ctx.stroke()
               for (var l=0; l < asalpelanggans.length; l++){
                 if (asalpelanggans[l] === tipepelanggans[i]) {
                   if(moneters[l] === 'Iya'){
@@ -1040,6 +1048,7 @@
               }
             }
             if (monetertoPls[k] === 'Tidak'){
+              ctx.strokeRect(290, -30, 100, 60);
               for (var l=0; l < asalpelanggans.length; l++){
                 if (asalpelanggans[l] === tipepelanggans[i]) {
                   if(moneters[l] === 'Iya'){

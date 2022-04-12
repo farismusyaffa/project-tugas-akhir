@@ -3,7 +3,7 @@
 @section('container')
 <main>
 
-  <div class="px-4 pt-5 my-5 border-bottom">
+  <div class="border-bottom">
     <h5 class="display-6 fw-bold text-center">Platform Klien Anda</h5>
       <div class="mx-auto"> 
         @foreach($platforms as $platform)

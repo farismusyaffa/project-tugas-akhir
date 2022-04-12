@@ -2,8 +2,6 @@
 
 @section('container')
 <main>
-  {{-- <h1 class="visually-hidden">Heroes examples</h1> --}}
-  {{-- @foreach($platform as $p) --}}
   <div class="text-center">
     <h1 class="display-5 fw-bold">Strategi Platform {{ $platform->nama }}!</h1>
     <div class="col-lg-6 mx-auto">
@@ -34,24 +32,24 @@
                 <tr>
                   <td>No. Tepl/HP</td>
                   <td>:</td>
-                  <td>01391093119</td>
+                  <td>{{ $platform->user->noHP }}</td>
                 </tr>
                 <tr>
                   <td>Jenis Kelamin</td>
                   <td>:</td>
-                  <td>Laki-Laki</td>
+                  <td>{{ $platform->user->jeniskelamin }}</td>
                 </tr>
               </table>
               <table class="table table-borderless table-sm col-6">
                 <tr>
                   <td>Tempat dan Tanggal Lahir</td>
                   <td>:</td>
-                  <td>Tempat,01391</td>
+                  <td>{{ $platform->user->tempatlahir }}, {{ $platform->user->tanggallahir }}</td>
                 </tr>
                 <tr>
                   <td>Alamat</td>
                   <td>:</td>
-                  <td>Wisma Adisty</td>
+                  <td>{{ $platform->user->alamat }}</td>
                 </tr>
               </table>
             </div>
