@@ -367,7 +367,7 @@
                   <div class="comment-meta border-bottom mb-3">
                     <p>{{ $k->fasilitator->name }} | {{ $k->created_at->diffForHumans() }} </p>
                     <p>{{ $k->komentar }}</p>
-                    <form action="/hapuskomentar{{ $k->id }}/fasilitator" method="post" class="d-inline">
+                    <form action="/hapuskomentar/{{ $k->id }}/fasilitator" method="post" class="d-inline">
                       @method('delete')
                       @csrf
                       <button class="btn btn-link" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
