@@ -50,7 +50,7 @@
                           </div>
                           <div class="mb-3">
                             <label for="deskripsi" class="col-form-label">Kegunaan/Deskripsi</label>
-                            <textarea class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" required value="{{ $platform->deskripsi }}"></textarea>
+                            <textarea class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" required>{{ old('deskripsi', $platform->deskripsi) }}</textarea>
                             @error('deskripsi')
                             <div class="invalid-feedback">
                               {{ $message }}
