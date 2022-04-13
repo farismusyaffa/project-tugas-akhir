@@ -282,11 +282,11 @@ class PlatformController extends Controller
     public function destroy(Platform $platform, $id)
     {
         $platform = Platform::find($id);
-        $pelanggan = Pelanggan::where('platform_id', $id)->get();
-        $indikator = Indikator::where('platform_id', $id)->get();
-        $interaksiPltoPel = InteraksiPltoPel::where('platform_id',$id)->get();
-        $interaksiPeltoPl = InteraksiPeltoPl::where('platform_id',$id)->get();
-        $komentar = Komentar::where('platform_id',$id)->get();
+        $pelanggan = Pelanggan::where('platform_id', $id);
+        $indikator = Indikator::where('platform_id', $id);
+        $interaksiPltoPel = InteraksiPltoPel::where('platform_id',$id);
+        $interaksiPeltoPl = InteraksiPeltoPl::where('platform_id',$id);
+        $komentar = Komentar::where('platform_id',$id);
         // $dataIndikator = DataIndikator::where('platform_id',$id)->get();
         // $interaksiPeltoPel = InteraksiPeltoPel::where('platform_id',$id)->get();
         $countKomentar = $komentar->count();
