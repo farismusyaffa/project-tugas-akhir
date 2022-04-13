@@ -18,7 +18,7 @@ class CreatePlatformsTable extends Migration
             $table->string('nama');
             $table->string('slug')->nullable();
             $table->text('deskripsi');
-            $table->string('gambar')->nullable();
+            // $table->string('gambar')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('fasilitator_id');
             $table->timestamps();

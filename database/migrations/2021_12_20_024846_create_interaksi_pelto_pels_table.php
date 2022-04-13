@@ -18,8 +18,6 @@ class CreateInteraksiPeltoPelsTable extends Migration
             $table->foreignId('platform_id');
             $table->string('asal');
             $table->string('tujuan');
-            // $table->foreignId('asalpelanggan_id')->references('id')->on('pelanggans');
-            // $table->foreignId('tujuanpelanggan_id')->references('id')->on('pelanggans');
             $table->string('nilai');
             $table->string('moneter');
             $table->timestamps();

@@ -16,7 +16,7 @@ class CreateDataIndikatorsTable extends Migration
         Schema::create('data_indikators', function (Blueprint $table) {
             $table->id();
             $table->foreignId('indikator_id');
-            $table->float('data');
+            $table->double('data');
             $table->date('date');
             $table->timestamps();
         });

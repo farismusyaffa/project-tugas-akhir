@@ -18,8 +18,6 @@ class CreatePelanggansTable extends Migration
             $table->foreignId('platform_id');
             $table->string('nama');
             $table->text('deskripsi');
-            $table->integer('spike')->nullable();
-            $table->integer('jumlah_interaksi')->nullable();
             $table->timestamps();
         });
     }
