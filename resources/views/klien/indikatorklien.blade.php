@@ -109,7 +109,7 @@
                         </div>
                         <div class="mb-3">
                           <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                          <textarea class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" value="{{ $i->deskripsi }}"></textarea>
+                          <textarea class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi">{{ old('deskripsi', $i->deskripsi) }}</textarea>
                           @error('deskripsi')
                           <div class="invalid-feedback">
                             {{ $message }}
