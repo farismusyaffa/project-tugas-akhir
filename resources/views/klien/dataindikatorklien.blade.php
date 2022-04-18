@@ -33,15 +33,6 @@
                 <form action="/tambahdataindikator" method="post">
                   @csrf
                   <div class="mb-3">
-                    <label for="data" class="col-form-label">Data Indikator</label>
-                    <input type="number" class="form-control @error('data') is-invalid @enderror" id="data" name="data" autofocus required>
-                    @error('data')
-                        <div class="invalid-feedback">
-                          {{ $message }}
-                        </div>
-                    @enderror
-                  </div>
-                  <div class="mb-3">
                     <label for="date" class="col-form-label">Tanggal</label>
                     <div class="input-group date" id="datepicker">
                       <input type="text" class="form-control" @error('date') is-invalid @enderror" id="date" name="date" required >
@@ -55,6 +46,15 @@
                     <div class="invalid-feedback">
                       {{ $message }}
                     </div>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="data" class="col-form-label">Data Indikator</label>
+                    <input type="number" class="form-control @error('data') is-invalid @enderror" id="data" name="data" autofocus required>
+                    @error('data')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
                     @enderror
                   </div>
                   <input type="hidden" name="indikator_id" id="indikator_id" value="{{ $indikator->id }}">
@@ -113,15 +113,6 @@
                               @method('put')
                               @csrf
                               <div class="mb-3">
-                                <label for="data" class="col-form-label">Data Indikator</label>
-                                <input type="number" class="form-control @error('data') is-invalid @enderror" id="data" name="data" value="{{ $d->data }}" autofocus required>
-                                @error('data')
-                                    <div class="invalid-feedback">
-                                      {{ $message }}
-                                    </div>
-                                @enderror
-                              </div>
-                              <div class="mb-3">
                                 <label for="date" class="col-form-label">Tanggal</label>
                                 <div class="input-group date" id="datepicker1">
                                   <input type="text" class="form-control" @error('date') is-invalid @enderror" id="date" name="date" value="{{ $d->date }}" required >
@@ -135,6 +126,15 @@
                                 <div class="invalid-feedback">
                                   {{ $message }}
                                 </div>
+                                @enderror
+                              </div>
+                              <div class="mb-3">
+                                <label for="data" class="col-form-label">Data Indikator</label>
+                                <input type="number" class="form-control @error('data') is-invalid @enderror" id="data" name="data" value="{{ $d->data }}" autofocus required>
+                                @error('data')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
                                 @enderror
                               </div>
                               <input type="hidden" name="indikator_id" id="indikator_id" value="{{ $indikator->id }}">

@@ -18,7 +18,7 @@
           <a href="/indikatorklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-gear"></i> Indikator</a>
           <a href="/dashboardklien/{{ $platform->id }}" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Dashboard</a>
         </div>
-        <button type="button" class="btn btn-primary px-4 gap-3 mb-3"  data-bs-toggle="modal" data-bs-target="#tambahIndikator" data-bs-whatever="Tambah Indikator Baru"><i class="bi bi-plus-square"></i> Buat Indikator</button>
+        <button type="button" class="btn btn-primary px-4 gap-3 mb-3 mt-3"  data-bs-toggle="modal" data-bs-target="#tambahIndikator" data-bs-whatever="Tambah Indikator Baru"><i class="bi bi-plus-square"></i> Buat Indikator</button>
         {{-- Tambah Indikator --}}
         <div class="modal fade text-start" id="tambahIndikator" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
