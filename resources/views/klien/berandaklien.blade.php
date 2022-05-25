@@ -136,8 +136,8 @@
             </div>
                 <p class="card-header text-center">Fasilitator : {{ $platform->fasilitator->name }} </p>
         </div>
-      </div>
         @endforeach
+      </div>
   </div>
 </main>
 
