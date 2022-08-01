@@ -114,7 +114,7 @@
                               @csrf
                               <div class="mb-3">
                                 <label for="date" class="col-form-label">Tanggal</label>
-                                <div class="input-group date" id="datepicker">
+                                <div class="input-group date" id="datepicker1">
                                   <input type="text" class="form-control" @error('date') is-invalid @enderror" id="date" name="date" value="{{ $d->date }}" required >
                                   <span class="input-group-append">
                                       <span class="input-group-text bg-white">

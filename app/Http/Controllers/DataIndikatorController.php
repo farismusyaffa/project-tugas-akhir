@@ -66,12 +66,12 @@ class DataIndikatorController extends Controller
         ->select([
             DB::raw('sum(data) as jumlah'),
             DB::raw('EXTRACT(MONTH from date) as bulan')
-        ])->groupBy('bulan')->where('indikator_id',$id)->get();
+        ])->groupBy('bulan')->where('indikator_id',$id)->orderBy('bulan')->get();
         $sumDataTahun = DB::table('data_indikators')
         ->select([
             DB::raw('sum(data) as jumlah'),
             DB::raw('EXTRACT(YEAR from date) as tahun')
-        ])->groupBy('tahun')->where('indikator_id',$id)->get();
+        ])->groupBy('tahun')->where('indikator_id',$id)->orderBy('tahun')->get();
         // dd($countData);
         return view('klien.dataindikatorklien',[
             'title'=>'Data Indikator',
