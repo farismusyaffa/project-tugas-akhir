@@ -144,7 +144,7 @@
                 }
             },
             series: [{
-                name: {!! json_encode($indikator->name) !!}',
+                name: {!! json_encode($indikator->name) !!},
                 data: {!! json_encode($jumlahDataBulan) !!}
             }]
         });
